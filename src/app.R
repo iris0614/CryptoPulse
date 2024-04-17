@@ -21,7 +21,7 @@ ui <- dashboardPage(
     dashboardBody(
         tags$style(HTML("
       .box.box-solid>.box-header {
-        color: #fff;
+        color: #F3797E;
       }
       .box-primary>.box-header {
         background: #9896df;
@@ -30,18 +30,18 @@ ui <- dashboardPage(
         background: #7c7bd4;
       }
       .box-warning>.box-header {
-        background: #87a3eb;
+        background: #98BDFF;
       }
     ")),
         fluidRow(
-            box(width = "33%", title = "High Value", status = "primary", solidHeader = TRUE, 
+            box(width = 12, title = "High Value", status = "primary", solidHeader = TRUE, 
                 valueBoxOutput("highValue")),
-            box(width = "33%", title = "Volume", status = "info", solidHeader = TRUE, 
+            box(width = 12, title = "Volume", status = "info", solidHeader = TRUE, 
                 valueBoxOutput("volume")),
-            box(width = "33%", title = "Price Change Per Day", status = "warning", solidHeader = TRUE, 
+            box(width = 12, title = "Price Change Per Day", status = "warning", solidHeader = TRUE, 
                 valueBoxOutput("priceChange")),
             box(title = "BTC Closing Prices", status = "primary", solidHeader = TRUE,
-                plotlyOutput("btcPlot"), width = 12) # Plot output for time series
+                plotlyOutput("btcPlot"), width = 12) 
         )
     )
 )
