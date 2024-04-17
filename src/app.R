@@ -27,7 +27,7 @@ ui <- dashboardPage(
             box-shadow: none; /* Remove shadow if any */
         }
         .box.box-solid>.box-header {
-            color: #F3797E;
+            color: #3f609e;
             font-size: 18px; /* Make the title bigger */
         }
         .box-primary>.box-header {
@@ -50,6 +50,12 @@ ui <- dashboardPage(
         .value-box .value-title {
             font-size: 18px; /* Make the title bigger */
         }
+        .skin-blue .left-side, .skin-blue .main-sidebar, .skin-blue .wrapper {
+    background-color: #367fa9;
+        }
+        .small-box p {
+    font-size: 25px;
+}
     ")),
     fluidRow(
       valueBoxOutput("highValue", width = 4),
