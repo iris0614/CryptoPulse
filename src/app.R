@@ -22,28 +22,37 @@ ui <- dashboardPage(
   ),
   dashboardBody(
     tags$style(HTML("
-      .box.box-solid>.box-header {
-        color: #F3797E;
-      }
-      .box-primary>.box-header {
-        background: #9896df;
-      }
-      .box-info>.box-header {
-        background: #7c7bd4;
-      }
-      .box-warning>.box-header {
-        background: #98BDFF;
-      }
+        .box.box-solid {
+            border: none; /* Remove borders */
+            box-shadow: none; /* Remove shadow if any */
+        }
+        .box.box-solid>.box-header {
+            color: #F3797E;
+        }
+        .box-primary>.box-header {
+            background: #9896df;
+        }
+        .box-info>.box-header {
+            background: #7c7bd4;
+        }
+        .box-warning>.box-header {
+            background: #98BDFF;
+        }
+        .value-box .value {
+            font-size: 24px; /* Adjust font size as necessary */
+            white-space: nowrap; /* Ensure the text doesn't wrap */
+            overflow: hidden; /* Hide overflow text */
+            text-overflow: ellipsis; /* Add ellipsis to overflow text */
+        }
     ")),
     fluidRow(
-      box(width = 12, title = "High Value", status = "primary", solidHeader = TRUE, 
-          valueBoxOutput("highValue")),
-      box(width = 12, title = "Volume", status = "info", solidHeader = TRUE, 
-          valueBoxOutput("volume")),
-      box(width = 12, title = "Price Change Per Day", status = "warning", solidHeader = TRUE, 
-          valueBoxOutput("priceChange")),
+      valueBoxOutput("highValue"),
+      valueBoxOutput("volume"),
+      valueBoxOutput("priceChange")
+    ),
+    fluidRow(
       box(title = "BTC Closing Prices", status = "primary", solidHeader = TRUE,
-          plotlyOutput("btcPlot"), width = 12) 
+          plotlyOutput("btcPlot"), width = 12)
     )
   )
 )
