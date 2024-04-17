@@ -9,7 +9,7 @@ df_BTC$Date <- as.Date(df_BTC$Date) # Ensure 'Date' is in the Date format
 
 # Define the UI for the application
 ui <- dashboardPage(
-  dashboardHeader(title = "Bitcoin Dashboard"),
+  dashboardHeader(title = "Bitcoin Pulse"),
   dashboardSidebar(
     # Sidebar with a date range input
     dateRangeInput("dateRange", "Select Date Range:",
