@@ -28,6 +28,7 @@ ui <- dashboardPage(
         }
         .box.box-solid>.box-header {
             color: #F3797E;
+            font-size: 18px; /* Make the title bigger */
         }
         .box-primary>.box-header {
             background: #9896df;
@@ -38,17 +39,22 @@ ui <- dashboardPage(
         .box-warning>.box-header {
             background: #98BDFF;
         }
+        /* Adjust the size of the number in the value box */
         .value-box .value {
-            font-size: 24px; /* Adjust font size as necessary */
-            white-space: nowrap; /* Ensure the text doesn't wrap */
-            overflow: hidden; /* Hide overflow text */
-            text-overflow: ellipsis; /* Add ellipsis to overflow text */
+            font-size: 16px; /* Make the number smaller */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* Adjust the size of the title in the value box */
+        .value-box .value-title {
+            font-size: 18px; /* Make the title bigger */
         }
     ")),
     fluidRow(
-      valueBoxOutput("highValue"),
-      valueBoxOutput("volume"),
-      valueBoxOutput("priceChange")
+      valueBoxOutput("highValue", width = 4),
+      valueBoxOutput("volume", width = 4),
+      valueBoxOutput("priceChange", width = 4)
     ),
     fluidRow(
       box(title = "BTC Closing Prices", status = "primary", solidHeader = TRUE,
