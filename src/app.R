@@ -15,8 +15,10 @@ ui <- dashboardPage(
     dateRangeInput("dateRange", "Select Date Range:",
                    start = min(df_BTC$Date), end = max(df_BTC$Date)),
     # Sidebar with a slider input for selecting date
-    sliderInput("sliderDate", "Select Date:",
-                min = min(df_BTC$Date), max = max(df_BTC$Date), value = c(min(df_BTC$Date), max(df_BTC$Date)))
+    sliderInput("sliderDate", "Select Date Range:",
+                min = min(df_BTC$Date), max = max(df_BTC$Date), 
+                value = c(min(df_BTC$Date), max(df_BTC$Date)),
+                step = NULL, ticks = FALSE, animate = FALSE)
   ),
   dashboardBody(
     tags$style(HTML("
@@ -49,11 +51,11 @@ ui <- dashboardPage(
 # Define server logic required for the dashboard
 server <- function(input, output, session) {
   
-  observe({
+  observeEvent(input$dateRange, {
     updateSliderInput(session, "sliderDate", value = c(input$dateRange[1], input$dateRange[2]))
   })
   
-  observe({
+  observeEvent(input$sliderDate, {
     updateDateRangeInput(session, "dateRange", start = input$sliderDate[1], end = input$sliderDate[2])
   })
   
@@ -106,7 +108,7 @@ server <- function(input, output, session) {
   output$btcPlot <- renderPlotly({
     # Use the reactive_data() that filters based on the inputs
     data <- reactive_data()
-    fig_BTC <- plot_ly(data, x=~Date, y=~Close, mode='lines')
+    fig_BTC <- plot_ly(data, x=~Date, y=~Close, type='scatter', mode='lines')
     fig_BTC
   })
 }
