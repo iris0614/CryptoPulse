@@ -15,7 +15,7 @@ ui <- dashboardPage(
   dashboardSidebar(
     selectInput("cryptoSelect", "Choose Cryptocurrency:", choices = c("BTC" = "Bitcoin", "ETH" = "Ethereum")),
     uiOutput("dateSliderUI"),
-    selectInput("priceSelect", "Choose Price Type:", choices = c("Open", "High", "Close"))
+    selectInput("priceSelect", "Choose Price Type:", choices = c("Open", "High", "Close", "Low", "Volume", "price_change_per_day", "price_change_ratio_per_day"))
   ),
   dashboardBody(
     tags$style(HTML("
@@ -124,7 +124,7 @@ server <- function(input, output, session) {
     price_title <- gsub("_", " ", input$priceSelect) # Replace underscores with spaces
     plot_ly(data, x = ~Date, y = ~Price, type = 'scatter', mode = 'lines', 
             line = list(color = 'deepskyblue')) %>%
-      layout(title = paste(price_title, "Time Series Plot"), 
+      layout(title = paste("Time Series Plot of", price_title), 
              xaxis = list(title = "Date"), 
              yaxis = list(title = paste(price_title, "Price")))
   })
