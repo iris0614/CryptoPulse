@@ -14,7 +14,8 @@ ui <- dashboardPage(
   dashboardHeader(title = "CryptoPulse"),
   dashboardSidebar(
     selectInput("cryptoSelect", "Choose Cryptocurrency:", choices = c("BTC" = "Bitcoin", "ETH" = "Ethereum")),
-    uiOutput("dateSliderUI")
+    uiOutput("dateSliderUI"),
+    selectInput("priceSelect", "Choose Price Type:", choices = c("Open", "High", "Close"))
   ),
   dashboardBody(
     tags$style(HTML("
@@ -59,7 +60,7 @@ ui <- dashboardPage(
       valueBoxOutput("volume", width = 4)
     ),
     fluidRow(
-      box(title = "Cryptocurrency Closing Prices", status = "primary", solidHeader = TRUE,
+      box(title = "Cryptocurrency Price Time Series", status = "primary", solidHeader = TRUE,
           plotlyOutput("cryptoPlot"), width = 12)
     )
   )
@@ -79,6 +80,15 @@ server <- function(input, output, session) {
   reactive_data <- reactive({
     df <- if(input$cryptoSelect == "Bitcoin") df_BTC else df_ETH
     df %>% filter(Date >= input$dateRange[1] & Date <= input$dateRange[2])
+  })
+  
+  # Reactive data based on selected price
+  reactive_price_data <- reactive({
+    req(input$priceSelect) # Ensure that the input is available
+    df <- reactive_data()
+    df <- df %>% select(Date, all_of(input$priceSelect))
+    names(df)[2] <- "Price" # Rename the second column to 'Price' for easier referencing
+    df
   })
   
   # Outputs for value boxes and plot
@@ -110,8 +120,13 @@ server <- function(input, output, session) {
   })
   
   output$cryptoPlot <- renderPlotly({
-    data <- reactive_data()
-    plot_ly(data, x = ~Date, y = ~Close, type = 'scatter', mode = 'lines', line = list(color = 'deepskyblue'))
+    data <- reactive_price_data()
+    price_title <- gsub("_", " ", input$priceSelect) # Replace underscores with spaces
+    plot_ly(data, x = ~Date, y = ~Price, type = 'scatter', mode = 'lines', 
+            line = list(color = 'deepskyblue')) %>%
+      layout(title = paste(price_title, "Time Series Plot"), 
+             xaxis = list(title = "Date"), 
+             yaxis = list(title = paste(price_title, "Price")))
   })
 }
 
