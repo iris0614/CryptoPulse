@@ -55,8 +55,8 @@ ui <- dashboardPage(
     ")),
     fluidRow(
       valueBoxOutput("highValue", width = 4),
-      valueBoxOutput("volume", width = 4),
-      valueBoxOutput("priceChange", width = 4)
+      valueBoxOutput("priceChange", width = 4),
+      valueBoxOutput("volume", width = 4)
     ),
     fluidRow(
       box(title = "Cryptocurrency Closing Prices", status = "primary", solidHeader = TRUE,
