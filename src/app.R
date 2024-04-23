@@ -144,7 +144,7 @@ server <- function(input, output, session) {
       y_axis_title <- "Price Change (USD per Day)"
     } else if (input$priceSelect == "price_change_ratio_per_day") {
       plot_title <- paste("Daily Price Change Ratio for", input$cryptoSelect)
-      y_axis_title <- "Price Change Ratio (%)"
+      y_axis_title <- "Price Change Ratio"
     }
     
     plot_ly(data, x = ~Date, y = ~Price, type = 'scatter', mode = 'lines', 
