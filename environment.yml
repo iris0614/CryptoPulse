@@ -1,0 +1,14 @@
+name: CryptoPulse
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base=4.1.2              # Specify the R version
+  - r-shiny=1.7.1             # Specify the Shiny package version
+  - r-dplyr=1.0.7             # dplyr for data manipulation
+  - r-plotly=4.10.0           # plotly for interactive plotting
+  - r-shinydashboard=0.7.2    # shinydashboard for creating dashboards
+  - r-httpuv=1.6.3            # Required by Shiny for running the web service
+  - pip
+  - pip:
+    - plotly                  # Also include the Python plotly package 
