@@ -27,7 +27,7 @@ ui <- dashboardPage(
             font-size: 14px;
         }
         body {
-            font-size: 16px; 
+            font-size: 14px; 
         }
         .box.box-solid {
             border: none; /* Remove borders */
