@@ -15,7 +15,7 @@ ui <- dashboardPage(
   dashboardSidebar(
     selectInput("cryptoSelect", "Choose Cryptocurrency:", choices = c("BTC" = "Bitcoin", "ETH" = "Ethereum")),
     uiOutput("dateSliderUI"),
-    selectInput("priceSelect", "Choose Price Type:", choices = c("Open", "High", "Close", "Low", "Volume", "price_change_per_day", "price_change_ratio_per_day"))
+    selectInput("priceSelect", "Choose Y of time series plot:", choices = c("Open", "High", "Close", "Low", "Volume", "price_change_per_day", "price_change_ratio_per_day"))
   ),
   dashboardBody(
     tags$style(HTML("
@@ -122,11 +122,26 @@ server <- function(input, output, session) {
   output$cryptoPlot <- renderPlotly({
     data <- reactive_price_data()
     price_title <- gsub("_", " ", input$priceSelect) # Replace underscores with spaces
+    # Define title and Y-axis label based on selected metric
+    if (input$priceSelect %in% c("Open", "High", "Close", "Low")) {
+      plot_title <- paste("Time Series of", price_title, "Price for", input$cryptoSelect)
+      y_axis_title <- paste(price_title, "Price (USD)")
+    } else if (input$priceSelect == "Volume") {
+      plot_title <- paste("Time Series of Trade Volume for", input$cryptoSelect)
+      y_axis_title <- "Volume"
+    } else if (input$priceSelect == "price_change_per_day") {
+      plot_title <- paste("Daily Price Change for", input$cryptoSelect)
+      y_axis_title <- "Price Change (USD per Day)"
+    } else if (input$priceSelect == "price_change_ratio_per_day") {
+      plot_title <- paste("Daily Price Change Ratio for", input$cryptoSelect)
+      y_axis_title <- "Price Change Ratio (%)"
+    }
+    
     plot_ly(data, x = ~Date, y = ~Price, type = 'scatter', mode = 'lines', 
             line = list(color = 'deepskyblue')) %>%
-      layout(title = paste("Time Series Plot of", price_title), 
+      layout(title = plot_title, 
              xaxis = list(title = "Date"), 
-             yaxis = list(title = paste(price_title, "Price")))
+             yaxis = list(title = y_axis_title))
   })
 }
 
