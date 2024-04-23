@@ -19,6 +19,16 @@ ui <- dashboardPage(
   ),
   dashboardBody(
     tags$style(HTML("
+        .main-header .logo {
+            font-size:28px;
+            font-family: Arial, sans-serif;
+        }
+        .input-group-sm>.form-control{
+            font-size: 14px;
+        }
+        body {
+            font-size: 16px; 
+        }
         .box.box-solid {
             border: none; /* Remove borders */
             box-shadow: none; /* Remove shadow if any */
