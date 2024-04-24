@@ -1,5 +1,7 @@
 # CryptoPulse
 
+<img src="img/logo.png" width="600"/>
+
 ## Welcome! 
 
 Welcome! 🎉 Willkommen! 🎊 Bienvenue! 🎈
