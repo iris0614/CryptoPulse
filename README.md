@@ -1,6 +1,6 @@
 # CryptoPulse
 
-<img src="img/logo.png" width="600"/>
+<img src="img/logo.png" width="400"/>
 
 ## Welcome! 
 
@@ -28,7 +28,7 @@ We are a team of data scientists and developers passionate about finance and tec
 
 `CryptoPulse` is an advanced analytical dashboard designed to provide real-time insights into cryptocurrency markets, tailored for traders, financial analysts, and enthusiasts interested in crypto market trends.
 
-### Motivation and Purpose {#motivation-and-purpose}
+### Motivation and Purpose 
 
 Our goal is to democratize access to cryptocurrency data and analytics, making it easy for everyone to understand market dynamics and make informed decisions.
 
@@ -44,6 +44,10 @@ Our goal is to democratize access to cryptocurrency data and analytics, making i
 ## How Does It Work? 
 
 The dashboard leverages Shiny for a responsive and interactive user interface. Users can select different cryptocurrencies, adjust time ranges, and access a variety of analytical tools.
+- Cryptocurrency Selection: Users can select the cryptocurrency of interest, such as Bitcoin or Ethereum, to view specific data.
+- Date Range Selection: A date slider allows users to specify the time range for the data, enabling historical market trend analysis.
+- Market Metrics Visualization: The dashboard displays various market metrics such as open, high, low, close prices, volume, and daily price changes. This data is presented in various formats including time series plots, bar charts, and value boxes.
+- Interactive Time Series Plot: The core feature is the interactive plot which updates real-time as users adjust the parameters. It showcases the selected price metric over the chosen period.
 
 ## Get Started 
 
@@ -58,7 +62,7 @@ To run `CryptoPulse` locally:
 2.  **Navigate to the project directory:**
 
     ``` bash
-    cd CryptoPulse
+    cd CryptoPulse/src
     ```
 
 3.  **Run the application:**
