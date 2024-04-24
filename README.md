@@ -57,6 +57,7 @@ The dashboard leverages Shiny for a responsive and interactive user interface. U
 -   **Date Range Selection:** A date slider allows users to specify the time range for the data, enabling historical market trend analysis.
 -   **Market Metrics Visualization:** The dashboard displays various market metrics such as open, high, low, close prices, volume, and daily price changes. This data is presented in various formats including time series plots, bar charts, and value boxes.
 -   **Interactive Time Series Plot:** The core feature is the interactive plot which updates real-time as users adjust the parameters. It showcases the selected price metric over the chosen period.
+[Uploading CryptoPulse.mp4.zip…]()
 
 ## Get Started
 
