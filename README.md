@@ -28,13 +28,15 @@ We are a team of data scientists and developers passionate about finance and tec
 
 `CryptoPulse` is an advanced analytical dashboard designed to provide real-time insights into cryptocurrency markets, tailored for traders, financial analysts, and enthusiasts interested in crypto market trends.
 
-### Motivation and Purpose {#motivation-and-purpose}
+### Motivation and Purpose 
 
 **Target Audience:** Traders, financial analysts, cryptocurrency enthusiasts, and anyone interested in understanding and navigating the cryptocurrency market.
 
 Cryptocurrencies, characterized by their volatile nature, present a complex landscape for traders and financial analysts. `CryptoPulse` aims to empower these professionals by providing a tool that offers real-time insights into market trends and dynamics, enabling them to make informed trading decisions. By leveraging our dashboard, users can analyze historical data patterns, track price movements, and understand market sentiments, all of which are crucial for optimizing investment strategies and minimizing risks.
 
 ## Features of CryptoPulse
+
+<img src="img/cryptopulse.png" width="800"/>
 
 `CryptoPulse` offers various features to explore cryptocurrency data:
 
@@ -46,6 +48,8 @@ Cryptocurrencies, characterized by their volatile nature, present a complex land
 ## How Does It Work?
 
 The dashboard leverages Shiny for a responsive and interactive user interface. Users can select different cryptocurrencies, adjust time ranges, and access a variety of analytical tools.
+
+<img src="img/demo.gif" width="800"/>
 
 -   **Cryptocurrency Selection:** Users can select the cryptocurrency of interest, such as Bitcoin or Ethereum, to view specific data.
 -   **Date Range Selection:** A date slider allows users to specify the time range for the data, enabling historical market trend analysis.
