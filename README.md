@@ -67,13 +67,8 @@ To run `CryptoPulse` locally:
 
 3.  **Run the application:**
 
-    Launch the application using R or RStudio by running the app with:
-
-    ``` r
-    shiny::runApp()
-    ```
-
-    This will typically launch the application in your default web browser at `http://127.0.0.1:8050`.
+    Launch the application using R or RStudio. 
+    Open the application file (app.R) and then click the 'Run App' button at the top right-hand side of RStudio.        This will typically launch the application in your default web browser at http://127.0.0.1:6218/.
 
 ## Contribute 
 
