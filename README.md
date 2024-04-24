@@ -17,7 +17,9 @@ Thank you for visiting the `CryptoPulse` project repository. This README file is
     -   [How Does It Work?](#how-does-it-work)
     -   [Get Started](#get-started)
     -   [Contribute](#contribute)
-    -   [License](#license)
+    -   [Data Sources and Licensing](#Data-Sources-and-Licensing)
+        -   [Data Sources](#Data-Sources)
+        -   [Licensing](#Licensing)
     -   [Contact Us](#contact-us)
 
 ## Who Are We?
@@ -82,7 +84,13 @@ To run `CryptoPulse` locally:
 
 We welcome contributions from the community! Whether it's enhancing the dashboard, adding new features, or fixing bugs, your input is highly appreciated. Please review our [Contribution Guidelines](CONTRIBUTING.md) for more information.
 
-## License
+## Data Sources and Licensing 
+
+### Data Sources
+
+Our analysis is anchored in a robust dataset, `👛🤑💰 Bitcoin & Ethereum prices (2014-2024)`, obtained from `Kaggle`. You can find it [here](https://www.kaggle.com/datasets/kapturovalexander/bitcoin-and-ethereum-prices-from-start-to-2023?select=BTC-USD+%282014-2024%29.csv).
+
+### Licensing
 
 `CryptoPulse` is released under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
