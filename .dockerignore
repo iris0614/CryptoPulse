@@ -1,0 +1,10 @@
+.git
+.github
+video
+notebooks
+img/demo.gif
+img/cryptopulse.png
+*.Rproj
+.Rhistory
+.RData
+.DS_Store

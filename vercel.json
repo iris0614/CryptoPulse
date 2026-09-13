@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "framework": null,
+  "github": {
+    "enabled": false
+  },
+  "buildCommand": "echo 'CryptoPulse is an R Shiny app and cannot run on Vercel. Use Docker or Render instead. See README.md.' && exit 1"
+}

@@ -42,10 +42,14 @@ Cryptocurrencies, characterized by their volatile nature, present a complex land
 
 `CryptoPulse` offers various features to explore cryptocurrency data:
 
--   **Real-time price updates**
--   **Historical data analysis**
--   **Comparative views across different cryptocurrencies**
--   **Market trend visualization**
+-   **Real-time price updates** from Binance public APIs, with local Kaggle history as fallback
+-   **Spot volume** for BTC and ETH, including 24h notional volume and historical trends
+-   **Futures / derivatives volume** plus USDT-M open interest and account long/short mix
+-   **200-day moving average** overlaid on the core price chart, with bull/bear regime and deviation
+-   **Estimated liquidation levels** showing long/short clusters and key leverage lines (10x-100x)
+-   **Timeframe switching** (24H, 7D, 30D, 90D, 1Y, ALL, or custom dates) across a responsive dashboard
+-   **BTC, ETH, SOL, and BNB** with the same spot, futures, MA200, and liquidation views
+-   **Auto-refresh** with a live toggle, 15/30/60 second interval, countdown, and manual refresh
 
 ## How Does It Work? 
 
@@ -82,6 +86,33 @@ To run `CryptoPulse` locally:
     -   Open the application file (`app.R`) and then click the `Run App` button at the top right-hand side of RStudio.
     -   This will typically launch the application in your default web browser at <http://127.0.0.1:6218/>.
 
+## Deploy (open in a browser, no clone required)
+
+CryptoPulse is an **R Shiny** app and needs a persistent server. Vercel and Netlify cannot host it. Use Docker or Render.
+
+**Docker (local or any VPS):**
+
+```bash
+docker compose up --build
+```
+
+Then open <http://localhost:3838/>.
+
+**Render (one-click web URL):**
+
+1. Push this repo to GitHub.
+2. In [Render](https://render.com), create a new Web Service and pick this repository.
+3. Runtime is Docker (`render.yaml` is already in the repo).
+4. After the first deploy, share the `*.onrender.com` URL.
+
+**shinyapps.io:**
+
+```r
+rsconnect::deployApp("src")
+```
+
+`vercel.json` is included only to fail fast if someone tries to deploy this Shiny app to Vercel.
+
 ## Contribute 
 
 We welcome contributions from the community! Whether it's enhancing the dashboard, adding new features, or fixing bugs, your input is highly appreciated. Please review our [Contribution Guidelines](CONTRIBUTING.md) for more information.
@@ -89,7 +120,14 @@ We welcome contributions from the community! Whether it's enhancing the dashboar
 ## Data Sources and Licensing 
 ### Data Sources 
 
-Our analysis is anchored in a robust dataset, `👛🤑💰 Bitcoin & Ethereum prices (2014-2024)`, obtained from `Kaggle`. You can find it [here](https://www.kaggle.com/datasets/kapturovalexander/bitcoin-and-ethereum-prices-from-start-to-2023?select=BTC-USD+%282014-2024%29.csv).
+Live market metrics are fetched from public exchange APIs and refreshed in the dashboard:
+
+-   **Binance Spot** (`api.binance.com`) for BTCUSDT / ETHUSDT / SOLUSDT / BNBUSDT prices, 24h change, and spot volume
+-   **Binance USDT-M Futures** (`fapi.binance.com`) for derivatives volume, open interest, and long/short account ratios
+-   **CoinGecko** for an optional global 24h volume cross-check
+-   **Local Kaggle history** (`👛🤑💰 Bitcoin & Ethereum prices (2014-2024)`) as the historical backbone and offline fallback. The dataset is [here](https://www.kaggle.com/datasets/kapturovalexander/bitcoin-and-ethereum-prices-from-start-to-2023?select=BTC-USD+%282014-2024%29.csv)
+
+Liquidation bands are **model estimates** (open interest × common leverage buckets × recent volume-weighted entries), not exchange-reported force-order heatmaps.
 
 ### Licensing 
 

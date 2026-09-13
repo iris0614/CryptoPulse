@@ -9,6 +9,10 @@ dependencies:
   - r-plotly=4.10.0           # plotly for interactive plotting
   - r-shinydashboard=0.7.2    # shinydashboard for creating dashboards
   - r-httpuv=1.6.3            # Required by Shiny for running the web service
+  - r-jsonlite                # JSON parsing for exchange APIs
+  - r-httr                    # HTTP client for live market data
+  - r-tidyr                   # Data reshaping for volume and liquidation views
+  - r-scales                  # Number formatting helpers
   - pip
   - pip:
     - plotly                  # Also include the Python plotly package 

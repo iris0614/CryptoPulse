@@ -1,0 +1,10 @@
+services:
+  cryptopulse:
+    build: .
+    image: cryptopulse:latest
+    ports:
+      - "3838:3838"
+    environment:
+      PORT: "3838"
+      HOST: "0.0.0.0"
+    restart: unless-stopped

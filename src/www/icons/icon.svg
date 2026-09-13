@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="CryptoPulse">
+  <defs>
+    <linearGradient id="bg" x1="18%" y1="6%" x2="86%" y2="98%">
+      <stop offset="0%" stop-color="#64D2FF"/>
+      <stop offset="48%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#0040DD"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="30%" cy="18%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="228" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="228" fill="url(#sheen)"/>
+  <path
+    d="M168 540 H 340 C 372 540 392 540 414 470 C 436 400 452 400 470 470 C 496 568 518 220 560 220 C 608 220 628 600 662 540 C 686 498 706 540 736 540 H 856"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="56"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
