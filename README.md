@@ -49,6 +49,8 @@ Crypto markets move quickly, and a single price chart is rarely enough. `CryptoP
 
 The app is an R Shiny page with an Apple-style toolbar. Choose an asset and timeframe, then move between tabs.
 
+<img src="img/demo.gif" width="800"/>
+
 -   **Overview:** Price, 24h change, MA200, spot volume, futures volume, and open interest, plus the main price chart
 -   **Volume:** Spot versus futures notional volume and the spot volume trend
 -   **Derivatives:** Open interest, long/short account mix, and a compact futures snapshot
