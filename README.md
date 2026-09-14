@@ -1,96 +1,91 @@
 # CryptoPulse
 
-<img src="img/logo.png" width="350"/>
+<img src="img/logo.png" width="160"/>
 
-## Welcome! 
+## Welcome!
 
 Welcome! 🎉 Willkommen! 🎊 Bienvenue! 🎈
 
-Thank you for visiting the `CryptoPulse` project repository. This README file is designed to provide you with essential information about our dashboard. Whether you're here to dive into specifics or just browsing to learn more, feel free to navigate using the links below:
+Thank you for visiting the `CryptoPulse` project repository. This README covers what the dashboard does, how to run it, and how to deploy it.
 
--   [CryptoPulse](#crypto-pulse)
-    -   [Welcome!](#welcome)
-    -   [Who Are We?](#who-are-we)
-        -   [Project Summary](#project-summary)
-        -   [Motivation and Purpose](#motivation-and-purpose)
-    -   [Features of CryptoPulse](#features-of-crypto-pulse)
-    -   [How Does It Work?](#how-does-it-work)
-    -   [Get Started](#get-started)
-    -   [Contribute](#contribute)
-    -   [Data Sources and Licensing](#Data-Sources-and-Licensing)
-        -   [Data Sources](#Data-Sources)
-        -   [Licensing](#Licensing)
-    -   [Contact Us](#contact-us)
+-   [Who Are We?](#who-are-we)
+    -   [Project Summary](#project-summary)
+    -   [Motivation and Purpose](#motivation-and-purpose)
+-   [Features of CryptoPulse](#features-of-cryptopulse)
+-   [How Does It Work?](#how-does-it-work)
+-   [Get Started](#get-started)
+-   [Deploy](#deploy)
+-   [Contribute](#contribute)
+-   [Data Sources and Licensing](#data-sources-and-licensing)
 
-## Who Are We? 
+## Who Are We?
 
 We are a team of data scientists and developers passionate about finance and technology, particularly in the cryptocurrency space. Our expertise in data visualization and interactive platforms drives the development of `CryptoPulse`.
 
-### Project Summary 
+### Project Summary
 
-`CryptoPulse` is an advanced analytical dashboard designed to provide real-time insights into cryptocurrency markets, tailored for traders, financial analysts, and enthusiasts interested in crypto market trends.
+`CryptoPulse` is a live Shiny dashboard for BTC, ETH, SOL, and BNB. It pulls spot and USDT-M futures data from public Binance APIs, overlays a 200-day moving average, and estimates liquidation clusters for traders, analysts, and crypto enthusiasts.
 
-### Motivation and Purpose 
+### Motivation and Purpose
 
-**Target Audience:** Traders, financial analysts, cryptocurrency enthusiasts, and anyone interested in understanding and navigating the cryptocurrency market.
+**Target audience:** Traders, financial analysts, cryptocurrency enthusiasts, and anyone who wants a faster read on market structure.
 
-Cryptocurrencies, characterized by their volatile nature, present a complex landscape for traders and financial analysts. `CryptoPulse` aims to empower these professionals by providing a tool that offers real-time insights into market trends and dynamics, enabling them to make informed trading decisions. By leveraging our dashboard, users can analyze historical data patterns, track price movements, and understand market sentiments, all of which are crucial for optimizing investment strategies and minimizing risks.
+Crypto markets move quickly, and a single price chart is rarely enough. `CryptoPulse` puts price, volume, open interest, long/short mix, and estimated liquidation levels in one place so users can judge trend, positioning, and nearby risk without jumping between terminals.
 
 ## Features of CryptoPulse
 
 <img src="img/cryptopulse.png" width="800"/>
 
-`CryptoPulse` offers various features to explore cryptocurrency data:
+-   **Four assets:** BTC, ETH, SOL, and BNB, with search in the header
+-   **Overview, Volume, Derivatives, and Liquidations** tabs on the same live snapshot
+-   **Live Binance data** for price, 24h change, spot volume, futures volume, and open interest
+-   **MA200 overlay** on candlestick or close charts, plus bull/bear regime and deviation
+-   **Timeframes:** 24H, 7D, 30D, 90D, 1Y, ALL, or a custom date range
+-   **Auto-refresh** with a 15/30/60 second interval, countdown, and a manual Refresh button
+-   **Estimated liquidation heatmap** and key leverage lines (10x–100x)
+-   **Local Kaggle history** as the BTC/ETH fallback when the network is unavailable
 
--   **Real-time price updates** from Binance public APIs, with local Kaggle history as fallback
--   **Spot volume** for BTC and ETH, including 24h notional volume and historical trends
--   **Futures / derivatives volume** plus USDT-M open interest and account long/short mix
--   **200-day moving average** overlaid on the core price chart, with bull/bear regime and deviation
--   **Estimated liquidation levels** showing long/short clusters and key leverage lines (10x-100x)
--   **Timeframe switching** (24H, 7D, 30D, 90D, 1Y, ALL, or custom dates) across a responsive dashboard
--   **BTC, ETH, SOL, and BNB** with the same spot, futures, MA200, and liquidation views
--   **Auto-refresh** with a live toggle, 15/30/60 second interval, countdown, and manual refresh
+## How Does It Work?
 
-## How Does It Work? 
+The app is an R Shiny page with an Apple-style toolbar. Choose an asset and timeframe, then move between tabs.
 
-The dashboard leverages Shiny for a responsive and interactive user interface. Users can select different cryptocurrencies, adjust time ranges, and access a variety of analytical tools.
+-   **Overview:** Price, 24h change, MA200, spot volume, futures volume, and open interest, plus the main price chart
+-   **Volume:** Spot versus futures notional volume and the spot volume trend
+-   **Derivatives:** Open interest, long/short account mix, and a compact futures snapshot
+-   **Liquidations:** Model-estimated long/short clusters around the current mark, not exchange force-order prints
 
-<img src="img/demo.gif" width="800"/>
+Local BTC/ETH CSVs backfill history. SOL and BNB use live Binance daily klines (enough history for MA200). Refreshing the Updates row clears the in-memory cache and pulls a new snapshot.
 
--   **Cryptocurrency Selection:** Users can select the cryptocurrency of interest, such as Bitcoin or Ethereum, to view specific data.
--   **Date Range Selection:** A date slider allows users to specify the time range for the data, enabling historical market trend analysis.
--   **Market Metrics Visualization:** The dashboard displays various market metrics such as open, high, low, close prices, volume, and daily price changes. This data is presented in various formats including time series plots, bar charts, and value boxes.
--   **Interactive Time Series Plot:** The core feature is the interactive plot which updates real-time as users adjust the parameters. It showcases the selected price metric over the chosen period.
+## Get Started
 
-[CryptoPulse Demo Video](https://github.com/iris0614/CryptoPulse/blob/main/video/CryptoPulse.mp4)
-
-## Get Started 
-
-To run `CryptoPulse` locally:
+### Option 1: Conda + RStudio or R
 
 1.  **Clone the repository:**
 
-    ``` bash
+    ```bash
     git clone git@github.com:iris0614/CryptoPulse.git
+    cd CryptoPulse
     ```
 
-2.  **Navigate to the project directory:**
+2.  **Create the environment:**
 
-    ``` bash
-    cd CryptoPulse/src
+    ```bash
+    conda env create -f environment.yml
+    conda activate CryptoPulse
     ```
 
-3.  **Run the application:**
+3.  **Run the app:**
 
-    -   Launch the application using R or RStudio.
-    -   Open the application file (`app.R`) and then click the `Run App` button at the top right-hand side of RStudio.
-    -   This will typically launch the application in your default web browser at <http://127.0.0.1:6218/>.
+    In RStudio, open `src/app.R` and click **Run App**. Or from a terminal:
 
-## Deploy (open in a browser, no clone required)
+    ```bash
+    cd src
+    Rscript -e "shiny::runApp('.', host='127.0.0.1', port=6218)"
+    ```
 
-CryptoPulse is an **R Shiny** app and needs a persistent server. Vercel and Netlify cannot host it. Use Docker or Render.
+    Then open <http://127.0.0.1:6218/>. Live metrics need internet access to Binance.
 
-**Docker (local or any VPS):**
+### Option 2: Docker
 
 ```bash
 docker compose up --build
@@ -98,14 +93,17 @@ docker compose up --build
 
 Then open <http://localhost:3838/>.
 
-**Render (one-click web URL):**
+## Deploy
 
-1. Push this repo to GitHub.
-2. In [Render](https://render.com), create a new Web Service and pick this repository.
-3. Runtime is Docker (`render.yaml` is already in the repo).
-4. After the first deploy, share the `*.onrender.com` URL.
+CryptoPulse is an **R Shiny** app and needs a persistent server. Vercel and Netlify cannot host it.
 
-**shinyapps.io:**
+**Render**
+
+1.  Open this repository in [Render](https://render.com) as a Web Service.
+2.  Runtime is Docker (`render.yaml` is already in the repo).
+3.  Share the `*.onrender.com` URL after the first deploy.
+
+**shinyapps.io**
 
 ```r
 rsconnect::deployApp("src")
@@ -113,28 +111,23 @@ rsconnect::deployApp("src")
 
 `vercel.json` is included only to fail fast if someone tries to deploy this Shiny app to Vercel.
 
-## Contribute 
+## Contribute
 
 We welcome contributions from the community! Whether it's enhancing the dashboard, adding new features, or fixing bugs, your input is highly appreciated. Please review our [Contribution Guidelines](CONTRIBUTING.md) for more information.
 
-## Data Sources and Licensing 
-### Data Sources 
+## Data Sources and Licensing
+
+### Data Sources
 
 Live market metrics are fetched from public exchange APIs and refreshed in the dashboard:
 
 -   **Binance Spot** (`api.binance.com`) for BTCUSDT / ETHUSDT / SOLUSDT / BNBUSDT prices, 24h change, and spot volume
 -   **Binance USDT-M Futures** (`fapi.binance.com`) for derivatives volume, open interest, and long/short account ratios
 -   **CoinGecko** for an optional global 24h volume cross-check
--   **Local Kaggle history** (`👛🤑💰 Bitcoin & Ethereum prices (2014-2024)`) as the historical backbone and offline fallback. The dataset is [here](https://www.kaggle.com/datasets/kapturovalexander/bitcoin-and-ethereum-prices-from-start-to-2023?select=BTC-USD+%282014-2024%29.csv)
+-   **Local Kaggle history** (`Bitcoin & Ethereum prices (2014-2024)`) as the historical backbone and offline fallback. The dataset is [here](https://www.kaggle.com/datasets/kapturovalexander/bitcoin-and-ethereum-prices-from-start-to-2023?select=BTC-USD+%282014-2024%29.csv)
 
 Liquidation bands are **model estimates** (open interest × common leverage buckets × recent volume-weighted entries), not exchange-reported force-order heatmaps.
 
-### Licensing 
+### Licensing
 
 `CryptoPulse` is released under the MIT License. See the [LICENSE](LICENSE.md) file for details.
-
-## Contact Us 
-
-For any questions or suggestions, feel free to [open an issue](https://github.com/your-username/CryptoPulse/issues/new) on this repository or contact one of our team members directly.
-
-Thank you for visiting our project! We hope `CryptoPulse` helps you navigate the dynamic world of cryptocurrencies more effectively.
